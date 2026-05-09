@@ -1,5 +1,8 @@
 import SideNav from '@/app/ui/dashboard/sidenav';
- 
+
+/** Avoid DB access during `next build` static prerender (e.g. Vercel without DB at build time). */
+export const dynamic = 'force-dynamic';
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
