@@ -25,14 +25,26 @@ export default async function Page({
         <h1 className={`${lusitana.className} text-2xl`}>Invoices</h1>
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search placeholder="Search invoices..." />
+        <Suspense
+          fallback={
+            <div className="relative h-10 w-full max-w-md flex-1 animate-pulse rounded-md bg-gray-100" />
+          }
+        >
+          <Search placeholder="Search invoices..." />
+        </Suspense>
         <CreateInvoice />
       </div>
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <Table query={query} currentPage={Number(currentPage)} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
-       <Pagination totalPages={totalPages} />
+        <Suspense
+          fallback={
+            <div className="h-10 w-full max-w-md animate-pulse rounded-md bg-gray-100" />
+          }
+        >
+          <Pagination totalPages={totalPages} />
+        </Suspense>
       </div>
     </div>
   );
